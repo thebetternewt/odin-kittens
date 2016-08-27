@@ -1,2 +1,13 @@
-<h1>Kittens#show</h1>
-<p>Find me in app/views/kittens/show.html.erb</p>
+<div class="row">
+	<div class="col-md-6 col-md-offset-3">
+		<h1>Kittens#show</h1>
+		<p>Find me in app/views/kittens/show.html.erb</p>
+		<p><%= "Name: #{@kitten.name}" %></p>
+		<p><%= "Age: #{@kitten.age}" %></p>
+		<p><%= "Cuteness: #{@kitten.cuteness}" %></p>
+		<p><%= "Softness: #{@kitten.softness}" %></p>
+		<%= link_to 'Edit', edit_kitten_path(@kitten), class: 'btn btn-primary' %>
+		<%= link_to 'Put Kitten to Sleep', @kitten, method: :delete, class: 'btn btn-danger' %>
+		<%= link_to 'All Kittens', kittens_path, class: 'btn btn-primary' %>
+	</div>
+</div>

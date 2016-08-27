@@ -1,2 +1,8 @@
-<h1>Kittens#edit</h1>
-<p>Find me in app/views/kittens/edit.html.erb</p>
+<% provide(:button_text, "Update Kitten") %>
+
+<div class="row">
+	<div class="col-md-6 col-md-offset-3">
+		<h1>Edit <% @kitten.name %></h1>
+		<%= render 'form' %>
+	</div>
+</div>

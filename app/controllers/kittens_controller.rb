@@ -12,7 +12,7 @@ class KittensController < ApplicationController
   end
 
   def create
-    @kitten = Kitten.build
+    @kitten = Kitten.new(kitten_params)
 
     if @kitten.save
       flash[:success] = "New Kitten successfully created. How soft and fuzzy!"
@@ -30,16 +30,24 @@ class KittensController < ApplicationController
   def update
     @kitten = Kitten.find(params[:id])
   
-    if @kitten.update
+    if @kitten.update(kitten_params)
       flash[:success] = "Your Kitten was successfully updated. How soft and fuzzy!"
       redirect_to @kitten
     else
       flash.now[:danger] = "Come on... It's just a kitten. You can do this!"
-      'edit'
+      render 'edit'
     end
   end
 
   def destroy
-    @kitten = Kitten.find(params[:id])
+    Kitten.find(params[:id]).destroy
+    flash[:success] = "Kitten successfully deleted."
+    redirect_to root_path
   end
 end
+
+private
+
+ def kitten_params
+   params.require(:kitten).permit(:name, :age, :cuteness, :softness)
+ end
